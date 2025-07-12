@@ -13,7 +13,7 @@ async function sendMessage() {
   } else if (model === 'deepseek') {
     reply = await callDeepSeek(input);
   } else if (model === 'ashlynn') {
-    reply = await callAshlynn(input);
+    reply = await callAshlynn(input);  // real API
   } else if (model === 'imagegen') {
     reply = await generateImage(input);
   }
@@ -34,20 +34,25 @@ function addMessage(text, sender) {
   chat.scrollTop = chat.scrollHeight;
 }
 
-// Dummy functions (replace with real API calls)
+// ✅ REAL Ashlynn API call
+async function callAshlynn(prompt) {
+  try {
+    const res = await fetch(`https://nexlynx.ashlynn.workers.dev/api/live?question=${encodeURIComponent(prompt)}`);
+    const json = await res.json();
+    return json.message || "❌ No response from Ashlynn AI";
+  } catch (error) {
+    console.error(error);
+    return "❌ Error contacting Ashlynn AI";
+  }
+}
 
+// 🧪 Dummy placeholders for other models (replace later)
 async function callChatGPT(prompt) {
   return "🤖 [Demo] ChatGPT says: " + prompt;
 }
 
 async function callDeepSeek(prompt) {
   return "🔍 [Demo] DeepSeek responds to: " + prompt;
-}
-
-async function callAshlynn(prompt) {
-  const res = await fetch(`https://nexlynx.ashlynn.workers.dev/api/live?question=${encodeURIComponent(prompt)}`);
-  const json = await res.json();
-  return json.message;
 }
 
 async function generateImage(prompt) {
