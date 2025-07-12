@@ -1,12 +1,12 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   color: #fff;
 }
 
 .app {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   padding: 20px;
 }
@@ -16,27 +16,38 @@ header {
   margin-bottom: 10px;
 }
 
+h1 {
+  font-size: 2em;
+  background: linear-gradient(90deg, #00ffe0, #00b3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 #modelSelect {
   margin-top: 10px;
-  padding: 5px 10px;
+  padding: 8px 12px;
   background: #1e3c72;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 #chatContainer {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   height: 400px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
-  margin: 5px 0;
-  padding: 8px 12px;
-  border-radius: 8px;
+  margin: 6px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
 }
 
 .user {
@@ -46,6 +57,7 @@ header {
 
 .bot {
   background: rgba(255, 255, 255, 0.2);
+  align-self: flex-start;
 }
 
 .input-area {
@@ -55,19 +67,20 @@ header {
 
 #userInput {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 button {
   background: #1e90ff;
   border: none;
   color: #fff;
-  padding: 10px 15px;
+  padding: 12px 18px;
   margin-left: 5px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
