@@ -3,432 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DS MULTI AI</title>
+  <title>Sensei AI</title>
   <style>
-    :root {
-      --bg-color: #f9fafb;
-      --text-color: #111827;
-      --bubble-user: #3b82f6;
-      --bubble-bot: #6b7280;
-      --input-bg: #e5e7eb;
-      --button-color: #3b82f6;
-      --button-text: #ffffff;
-      --selected-tab: #3b82f6;
-      --unselected-tab: #cbd5e1;
-    }
-
-    [data-theme="dark"] {
-      --bg-color: #111827;
-      --text-color: #f9fafb;
-      --bubble-user: #2563eb;
-      --bubble-bot: #374151;
-      --input-bg: #1f2937;
-      --button-color: #6366f1;
-      --button-text: #ffffff;
-      --selected-tab: #6366f1;
-      --unselected-tab: #4b5563;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(to right, #6366f1, #3b82f6);
-      padding: 0.6rem 1rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    #menuToggle {
-      position: absolute;
-      left: 1rem;
-      background-color: transparent;
-      color: white;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    #themeToggle {
-      position: absolute;
-      right: 1rem;
-      background-color: var(--button-color);
-      color: var(--button-text);
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 1001;
-    }
-
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: none;
-      z-index: 999;
-    }
-
-    #sidebar {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 280px;
-      height: 100%;
-      background-color: var(--input-bg);
-      color: var(--text-color);
-      padding: 1rem;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      transition: left 0.4s ease-in-out;
-      overflow-y: auto;
-    }
-
-    #sidebar.open {
-      left: 0;
-    }
-
-    #sidebar h2, #sidebar h3 {
-      margin-top: 1rem;
-      color: var(--text-color);
-    }
-
-    #sidebar p, #sidebar li {
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-
-    #sidebar button.closeBtn {
-      background-color: transparent;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--text-color);
-      float: right;
-      cursor: pointer;
-    }
-
-    #chat-container {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bubble {
-      padding: 0.75rem;
-      border-radius: 1rem;
-      margin: 0.5rem 0;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-
-    .user {
-      align-self: flex-end;
-      background-color: var(--bubble-user);
-      color: white;
-    }
-
-    .bot {
-      align-self: flex-start;
-      background-color: var(--bubble-bot);
-      color: white;
-    }
-
-    #input-section {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-      gap: 0.5rem;
-      background-color: var(--input-bg);
-    }
-
-    #input-section select,
-    #input-section input,
-    #input-section button {
-      padding: 0.75rem;
-      border-radius: 0.5rem;
-      border: none;
-    }
-
-    #input-section button {
-      background-color: var(--button-color);
-      color: var(--button-text);
-      cursor: pointer;
-    }
-
-    #type-switch {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-
-    #type-switch button {
-      flex: 1;
-      padding: 0.6rem;
-      border-radius: 0.5rem;
-      border: none;
-      cursor: pointer;
-      background-color: var(--unselected-tab);
-      color: var(--text-color);
-    }
-
-    #type-switch button.active {
-      background-color: var(--selected-tab);
-      color: white;
-    }
-
-    img.generated {
-      max-width: 100%;
-      border-radius: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 0.75rem;
-      font-size: 0.875rem;
-      color: var(--text-color);
-      background-color: var(--input-bg);
-    }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9fafb; color: #111827; margin:0; display:flex; flex-direction:column; height:100vh;}
+    header { background: linear-gradient(to right, #6366f1, #3b82f6); padding:0.6rem 1rem; color:white; text-align:center;}
+    main { flex:1; overflow-y:auto; padding:1rem; }
+    .bubble { padding:0.75rem; border-radius:1rem; margin:0.5rem 0; max-width:80%; }
+    .user { background:#3b82f6; color:white; align-self:flex-end;}
+    .bot { background:#6b7280; color:white; align-self:flex-start;}
+    #input-section { display:flex; padding:1rem; gap:0.5rem; background:#e5e7eb;}
+    #userInput { flex:1; padding:0.75rem; border-radius:0.5rem; border:none;}
+    #sendBtn { padding:0.75rem; border-radius:0.5rem; border:none; background:#3b82f6; color:white; cursor:pointer;}
   </style>
 </head>
 <body>
-  <div id="overlay" onclick="closeSidebar()"></div>
-
-  <header>
-    <button id="menuToggle" onclick="openSidebar()">☰</button>
-    <h1>DS MULTI AI</h1>
-    <button id="themeToggle">Dark 🖤</button>
-  </header>
-
-  <div id="sidebar">
-    <button class="closeBtn" onclick="closeSidebar()">✖</button>
-    <h2>About</h2>
-    <p><strong>DS MULTI AI</strong> is a unified AI platform designed to let users chat, generate images, and interact with multiple powerful models from OpenAI, Google, and other open-source communities — all from one place.</p>
-    <p>You can switch between <em>Chat</em> and <em>Image</em> modes to get either AI responses or AI-generated visuals. The site dynamically updates models based on your chosen mode for a clean experience.</p>
-    <h3>Supported Models</h3>
-    <ul>
-      <li><strong>Chat:</strong> GPT-4, GPT-4o Mini, Gemini, Deepseek, Mistral, Qwen Coder</li>
-      <li><strong>Image:</strong> Flux AI, Turbo AI</li>
-    </ul>
-    <h2>Developer</h2>
-    <p>This site is proudly crafted and maintained by <strong><a href="https://github.com/Sanchit0102" target="_blank">Sanchit</a> aka ՏIᒪᗴᑎT ᘜᕼOՏT ⚡️</strong>. Built from scratch using HTML, CSS, and JavaScript (no frameworks), it aims to be lightweight, fast, and accessible on all devices.</p>
-    <p>Integrations are powered by the <strong>Ashlynn AI API</strong>. It’s designed for students, developers, designers, and the curious — to learn, create, and explore AI easily.</p>
-  </div>
-
+  <header><h1>Sensei AI</h1></header>
   <main id="chat-container"></main>
-
   <div id="input-section">
-    <div id="type-switch">
-      <button id="chatBtn" onclick="setMode('chat')">Chat with AI</button>
-      <button id="imageBtn" onclick="setMode('image')">Generate Image</button>
-    </div>
-    <select id="model"></select>
-    <input type="text" id="userInput" placeholder="Enter your prompt here..." />
+    <input type="text" id="userInput" placeholder="Ask Sensei AI...">
     <button id="sendBtn">Send</button>
   </div>
-
-  <footer>Made With ❤️ By Sanchit</footer>
-
   <script>
-    function openSidebar() {
-      document.getElementById('sidebar').classList.add('open');
-      document.getElementById('overlay').style.display = 'block';
-      document.getElementById('menuToggle').style.display = 'none';
-    }
-
-    function closeSidebar() {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('overlay').style.display = 'none';
-      document.getElementById('menuToggle').style.display = 'block';
-    }
-
-    const BASE_URL = 'https://api.ashlynn-repo.tech';
-    const chatModels = [
-      { value: 'gpt-4', label: 'GPT-4 Model' },
-      { value: 'gpt-4o-mini', label: 'GPT-4o Mini Model' },
-      { value: 'gemini-1.5-flash', label: 'Gemini Flash AI' },
-      { value: 'deepseek-r1', label: 'Deepseek AI' },
-      { value: 'mixtral-8x7b', label: 'Mistral AI' },
-      { value: 'qwen-2.5-coder-32b', label: 'Qwen Coder AI' }
-    ];
-    const imageModels = [
-      { value: 'flux', label: 'Flux AI' },
-      { value: 'turbo', label: 'Turbo AI' }
-    ];
-
-    let mode = 'chat';
-    let loadingBubble = null;
-
     const chatContainer = document.getElementById('chat-container');
     const sendBtn = document.getElementById('sendBtn');
     const userInput = document.getElementById('userInput');
-    const modelSelector = document.getElementById('model');
-    const themeToggle = document.getElementById('themeToggle');
-
-    function populateModels() {
-      modelSelector.innerHTML = '';
-      const models = mode === 'chat' ? chatModels : imageModels;
-      models.forEach(model => {
-        const opt = document.createElement('option');
-        opt.value = model.value;
-        opt.textContent = model.label;
-        modelSelector.appendChild(opt);
-      });
-    }
-
-    function setMode(selectedMode) {
-      mode = selectedMode;
-      populateModels();
-      document.getElementById('chatBtn').classList.remove('active');
-      document.getElementById('imageBtn').classList.remove('active');
-      if (mode === 'chat') {
-        document.getElementById('chatBtn').classList.add('active');
-      } else {
-        document.getElementById('imageBtn').classList.add('active');
-      }
-    }
-
-    function addMessage(content, sender = 'bot') {
-      const bubble = document.createElement('div');
-      bubble.className = `bubble ${sender}`;
-      if (typeof content === 'string') {
-        bubble.textContent = content;
-      } else {
-        bubble.appendChild(content);
-      }
-      chatContainer.appendChild(bubble);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      saveMessages();
-      return bubble;
-    }
-
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      themeToggle.textContent = newTheme === 'dark' ? 'Light 🤍' : 'Dark 🖤';
-    });
-
-    async function resolveFinalImageUrl(tmpUrl) {
-      return tmpUrl.replace('/dl/dl', '/dl');
-    }
 
     async function sendMessage() {
       const prompt = userInput.value.trim();
-      const model = modelSelector.value;
       if (!prompt) return;
 
       addMessage(prompt, 'user');
       userInput.value = '';
-      loadingBubble = addMessage('Searching...', 'bot');
+      addMessage('Thinking...', 'bot');  // temporary
 
       try {
-        if (mode === 'chat') {
-          const res = await fetch(`${BASE_URL}/chat/?question=${encodeURIComponent(prompt)}&model=${model}`);
-          const data = await res.json();
-          loadingBubble.remove();
-          addMessage(data.response || 'No response.', 'bot');
-        } else if (mode === 'image') {
-          const endpoint = model === 'flux' ? '/image/?prompt=' : '/turbo?prompt=';
-          const dimension = model === 'turbo' ? '&dimensions=square' : '';
-          const res = await fetch(`${BASE_URL}${endpoint}${encodeURIComponent(prompt)}${dimension}`);
-          const data = await res.json();
-          loadingBubble.remove();
-
-          if (data.image_urls && data.image_urls.length > 0) {
-            for (const tmpUrl of data.image_urls) {
-              const realUrl = await resolveFinalImageUrl(tmpUrl);
-              const container = document.createElement('div');
-              const img = document.createElement('img');
-              const download = document.createElement('a');
-              const caption = document.createElement('p');
-
-              img.src = realUrl;
-              img.className = 'generated';
-
-              download.href = realUrl;
-              download.download = 'image.png';
-              download.textContent = 'Download Image';
-              download.style.display = 'inline-block';
-              download.style.marginTop = '0.5rem';
-              download.style.color = 'var(--button-color)';
-
-              caption.textContent = 'MADE BY DS MULTI AI ❤️';
-              caption.style.marginTop = '0.5rem';
-              caption.style.fontSize = '0.85rem';
-
-              container.appendChild(img);
-              container.appendChild(download);
-              container.appendChild(caption);
-              addMessage(container, 'bot');
-            }
-          } else {
-            addMessage('No image generated.', 'bot');
-          }
-        }
+        const res = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_OPENAI_API_KEY"   // <-- replace this
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo", // you can change to gpt-4 if you have access
+            messages: [{ role: "user", content: prompt }]
+          })
+        });
+        const data = await res.json();
+        // remove last 'Thinking...' bubble
+        const lastBubble = document.querySelector('.bot:last-child');
+        if (lastBubble) lastBubble.remove();
+        addMessage(data.choices[0].message.content, 'bot');
       } catch (err) {
         console.error(err);
-        if (loadingBubble) loadingBubble.remove();
+        const lastBubble = document.querySelector('.bot:last-child');
+        if (lastBubble) lastBubble.remove();
         addMessage('Error: Unable to get response.', 'bot');
       }
     }
 
-    function saveMessages() {
-      const bubbles = document.querySelectorAll('.bubble');
-      const messages = [];
-      bubbles.forEach(b => {
-        messages.push({ sender: b.classList.contains('user') ? 'user' : 'bot', html: b.innerHTML });
-      });
-      localStorage.setItem('ds-messages', JSON.stringify(messages));
+    function addMessage(text, sender) {
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${sender}`;
+      bubble.textContent = text;
+      chatContainer.appendChild(bubble);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function loadMessages() {
-      const saved = localStorage.getItem('ds-messages');
-      if (saved) {
-        const messages = JSON.parse(saved);
-        messages.forEach(msg => {
-          const div = document.createElement('div');
-          div.className = `bubble ${msg.sender}`;
-          div.innerHTML = msg.html;
-          chatContainer.appendChild(div);
-        });
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-      }
-    }
-
-    document.getElementById('sendBtn').addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', e => {
-      if (e.key === 'Enter') sendMessage();
-    });
-
-    loadMessages();
-    setMode('chat');
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
   </script>
 </body>
-  </html>
-                               
+</html>
