@@ -12,6 +12,8 @@ async function sendMessage() {
     reply = await callChatGPT(input);
   } else if (model === 'deepseek') {
     reply = await callDeepSeek(input);
+  } else if (model === 'ashlynn') {
+    reply = await callAshlynn(input);
   } else if (model === 'imagegen') {
     reply = await generateImage(input);
   }
@@ -26,14 +28,13 @@ function addMessage(text, sender) {
   if (typeof text === 'string') {
     msg.textContent = text;
   } else {
-    msg.appendChild(text);
+    msg.appendChild(text); // for images
   }
   chat.appendChild(msg);
   chat.scrollTop = chat.scrollHeight;
 }
 
-// --- Dummy functions ---
-// Replace these with real API calls
+// Dummy functions (replace with real API calls)
 
 async function callChatGPT(prompt) {
   return "🤖 [Demo] ChatGPT says: " + prompt;
@@ -43,9 +44,16 @@ async function callDeepSeek(prompt) {
   return "🔍 [Demo] DeepSeek responds to: " + prompt;
 }
 
+async function callAshlynn(prompt) {
+  const res = await fetch(`https://nexlynx.ashlynn.workers.dev/api/live?question=${encodeURIComponent(prompt)}`);
+  const json = await res.json();
+  return json.message;
+}
+
 async function generateImage(prompt) {
   const img = document.createElement('img');
-  img.src = "https://placehold.co/300x200?text=" + encodeURIComponent(prompt);
+  img.src = "https://placehold.co/400x300?text=" + encodeURIComponent(prompt);
   img.style.maxWidth = '100%';
+  img.style.borderRadius = '10px';
   return img;
 }
