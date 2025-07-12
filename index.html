@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shinkai AI</title>
+  <title>Sensei AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
     <header>
-      <h1>Shinkai AI 🌊</h1>
+      <h1>Sensei AI 🧠</h1>
       <select id="modelSelect">
         <option value="chatgpt">ChatGPT</option>
         <option value="deepseek">DeepSeek</option>
-        <option value="imagegen">ImageGen</option>
+        <option value="ashlynn">Ashlynn</option>
+        <option value="imagegen">Image Gen</option>
       </select>
     </header>
     <div id="chatContainer"></div>
     <div class="input-area">
-      <input type="text" id="userInput" placeholder="Type your message or image prompt...">
+      <input type="text" id="userInput" placeholder="Type your message or prompt...">
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
